@@ -1,18 +1,10 @@
 [build]
 builder = "dockerfile"
-buildpacks = []
 
 [deploy]
 numReplicas = 1
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
-
-[[services]]
-name = "web"
-builder = "nixpacks"
-
-[services.web.build]
-nixPackages = ["php82", "php82Extensions.pdo_mysql", "php82Extensions.openssl", "php82Extensions.mbstring", "php82Extensions.tokenizer", "php82Extensions.json", "php82Extensions.curl"]
 
 [[services]]
 name = "mysql"
