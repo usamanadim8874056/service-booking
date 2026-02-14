@@ -23,8 +23,8 @@ return new class extends Migration
         });
 
         DB::table('banner')->insert([
-            'title' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-            'sub_title' => 'Praesent porta mi vel bibendum scelerisque',
+            'title' => 'Book Trusted Local Services in Minutes',
+            'sub_title' => 'Find verified professionals near you, compare prices, and schedule appointments with confidence.',
             'banner_image' => '1444547224banner.jpg',
         ]);
     }
