@@ -1,0 +1,934 @@
+/* ========================== */
+/* color variavles */
+/* ========================== */
+:root {
+    --white: #fff;
+    --black: #000;
+    --hover-color: #ff8800;
+    --font-family: 'Poppins', sans-serif;
+}
+
+/* ========================= */
+/* Common css */
+/* ========================= */
+
+body {
+    color: #333;
+    background: var(--white);
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+
+a {
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-family)
+}
+
+i.far {
+    margin: 0 10px 0 0;
+}
+
+p {
+    color: #777;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.main-content {
+    height: calc(100vh - 50px);
+}
+
+.link-btn {
+    color: var(--white);
+    background-color: var(--hover-color);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 11px 20px 10px;
+    border-radius: 0;
+    border: none;
+    transition: all 0.3s ease 0s;
+}
+
+.link-btn:hover {
+    color: var(--white);
+    background-color: var(--hover-color);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: var(--hover-color);
+}
+
+.section-head {
+    color: #333;
+    font-size: 30px;
+    font-weight: 700;
+    font-family: var(--font-family);
+    border-left: 5px solid var(--hover-color);
+    padding: 5px 10px;
+    margin: 0;
+    /* border: 1px solid var(--black); */
+}
+
+.section-description {
+    font-size: 16px;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+.sub-section-head {
+    color: var(--black);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 0 0 10px;
+    margin: 0 0 30px;
+    border-left: 4px solid var(--hover-color);
+}
+
+
+/*================================*/
+/*********** Nav Bar CSS **********/
+/*================================*/
+.navbar {
+    background: var(--black);
+}
+
+.navbar-toggler {
+    background: var(--white);
+    border-color: var(--white) !important;
+}
+
+
+.navbar .navbar-brand {
+    color: var(--white);
+    font-size: 30px;
+    font-family: var(--font-family);
+    line-height: 0px;
+    font-weight: 600;
+    margin: 0;
+    transition: .5s;
+}
+
+.navbar .navbar-brand:focus,
+.navbar .navbar-brand:hover {
+    color: var(--white);
+}
+
+.navbar .navbar-brand img {
+    height: 50px;
+}
+
+@media (min-width: 992px) {
+
+    .navbar,
+    .dropdown-item {
+        padding: 10px 60px;
+        background: var(--black);
+
+    }
+
+    .navbar .navbar-nav .nav-link,
+    .navbar .navbar-nav .nav-link:focus,
+    .dropdown-item {
+        color: var(--white);
+        font-family: var(--font-family);
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: capitalize;
+        padding: 10px 12px;
+        text-transform: capitalize;
+        transition: all .25s ease;
+    }
+
+    .navbar-light.nav-sticky .navbar-nav .nav-link,
+    .navbar-light.nav-sticky .navbar-nav .nav-link:focus {
+        color: var(--white)
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover,
+    .navbar-light .navbar-nav .nav-link.active,
+    .navbar-light .navbar-nav .show > .nav-link .dropdown-item:active {
+        color: var(--hover-color);
+    }
+
+    .navbar-light.nav-sticky .navbar-nav .nav-link:hover,
+    .navbar-light.nav-sticky .navbar-nav .nav-link.active,
+    .dropdown-item:hover {
+        color: var(--hover-color);
+    }
+
+    .dropdown-item:active {
+        background: transparent;
+    }
+
+    .navbar-toggler {
+        background: var(--white);
+        border-color: var(--white) !important;
+    }
+
+    .dropdown-menu {
+        right: 0;
+        left: auto;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .navbar {
+        padding: 15px;
+        background: var(--black);
+        font-family: var(--font-family);
+    }
+
+    .navbar .navbar-nav {
+        margin-top: 15px;
+    }
+
+    .navbar a.nav-link {
+        padding: 5px;
+    }
+
+    .navbar .dropdown-menu {
+        box-shadow: none;
+    }
+
+    .navbar-light .navbar-nav .nav-link.active,
+    .navbar-light .navbar-nav .nav-link:hover,
+    .dropdown-item:hover {
+        color: var(--hover-color);
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: var(--white);
+    }
+
+    .navbar-light .navbar-nav .nav-link:hover,
+    .dropdown-item:hover {
+        color: var(--hover-color);
+    }
+}
+
+/*******************************/
+/********** Hero CSS ***********/
+/*******************************/
+#banner {
+    /* height: 550px; */
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+#banner:before {
+    content: '';
+    background-color: var(--black);
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#banner .banner-content {
+    color: var(--white);
+    text-align: center;
+}
+
+#banner .banner-content h1 {
+    font-size: 40px;
+    line-height: 55px;
+    font-weight: 700;
+}
+
+#banner .banner-content p {
+    color: var(--white);
+    font-size: 25px;
+    margin: 0 0 20px;
+}
+
+/* search form */
+
+.search-form {
+    background-color: var(--white);
+    padding: 20px;
+}
+
+.search-form.filter {
+    background-color: #eee;
+}
+
+.search-form .form-control {
+    height: 50px;
+    border-radius: 0;
+}
+
+/*===============================*/
+/******* Pagination  CSS *******/
+/*===============================*/
+
+.pagination {
+    justify-content: center;
+}
+
+.pagination .page-item .page-link {
+    color: var(--black);
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 35px;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+}
+
+.pagination .page-item .page-link:hover,
+.pagination .page-item.active .page-link {
+    color: var(--white);
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+    box-shadow: none;
+}
+
+/*===============================*/
+/******* Breadcrumb CSS *******/
+/*===============================*/
+
+.breadcrumb {
+    background: transparent;
+    padding: 0;
+}
+
+.breadcrumb a {
+    color: var(--black);
+    transition: all 0.3s ease 0s;
+}
+
+.breadcrumb a:hover,
+.breadcrumb .active {
+    color: var(--hover-color);
+}
+
+/*===============================*/
+/******* Home Page Category Section CSS *******/
+/*===============================*/
+
+.category-box {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: block;
+}
+
+.category-box img {
+    width: 100%;
+    margin: 0 0 7px;
+}
+
+.category-box h3 {
+    color: var(--black);
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin: 0 0 5px 10px;
+    transition: all 0.3s ease 0s;
+}
+
+.category-box:hover h3 {
+    color: var(--hover-color);
+}
+
+/*===============================*/
+/******* Home Page Services Section CSS *******/
+/*===============================*/
+
+#services-section {
+    background: #eee;
+}
+
+.service-box {
+    background-color: var(--white);
+    border: 1px solid #ddd;
+    border-bottom-width: 3px;
+    transition: all 0.3s ease 0s;
+}
+
+.service-box:hover {
+    border-bottom-color: var(--hover-color);
+    /* box-shadow: 0 0 15px -5px rgba(0,0,0,0.3); */
+}
+
+.service-box img {
+    width: 100%;
+}
+
+.service-box .service-amount {
+    color: #fff;
+    background-color: var(--hover-color);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 2px 10px 0;
+    border-radius: 10px;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+}
+
+.service-box .content {
+    padding: 15px 15px 0;
+}
+
+.service-box .content h3 {
+    color: var(--black);
+    font-size: 18px;
+    margin: 0 0 7px;
+}
+
+.service-box .content h3 a {
+    color: var(--black);
+    transition: all 0.3s ease 0s;
+}
+
+.service-box .content h3 a:hover {
+    color: var(--hover-color);
+}
+
+.service-box .content span {
+    color: #999;
+    font-size: 13px;
+    margin: 0 0 5px;
+    display: block;
+}
+
+.service-box .content span a {
+    color: var(--hover-color);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease 0s;
+}
+
+.service-box .content span a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+.service-box .content p {
+    color: #777;
+    font-size: 15px;
+    /* letter-spacing: 0.5px; */
+    margin: 0 0 15px;
+}
+
+
+
+.service-box .action {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 0 10px;
+}
+
+.service-box .action a {
+    color: #fff;
+    background-color: var(--hover-color);
+    padding: 0 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease 0s;
+}
+
+
+
+.service-box .action a.active:nth-child(2) {
+    background-color: rgb(8, 172, 8);
+}
+
+.service-box .action a:nth-child(2) {
+    background-color: rgb(212, 7, 7);
+}
+
+.service-box .action a:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .5);
+}
+
+.service-box .action i {
+    font-size: 13px;
+}
+
+
+.no-record {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 50px;
+}
+
+/*===============================*/
+/******* Single Service Page CSS *******/
+/*===============================*/
+
+.single-service-image {
+    width: 100%;
+}
+
+.single-service-box h2 {
+    color: var(--black);
+    font-size: 30px;
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.service-amount {
+    color: #000;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0 0 5px;
+    display: block;
+}
+
+.single-service-box .service-category {
+    margin: 0 0 10px;
+    display: inline-block;
+}
+
+.single-service-box .service-category a {
+    color: var(--white);
+    background-color: var(--hover-color);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 3px 5px;
+    border-radius: 5px;
+    transition: all 0.3s ease 0s;
+}
+
+.single-service-box .service-category a:hover {
+    color: var(--white);
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.single-service-box p {
+    padding: 10px 0;
+    margin: 0 0 10px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.provider-detail img {
+    width: 60px;
+    margin: 0 10px 0 0;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.provider-detail h5 {
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 3px;
+}
+
+.provider-detail span {
+    font-size: 14px;
+}
+
+.provider-detail > span {
+    color: #333;
+    background-color: #eee;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 3px 10px;
+    margin: 0 0 10px;
+}
+
+.service-availability {
+    padding: 0;
+    margin: 0 0 35px;
+    list-style: none;
+}
+
+.service-availability li {
+    margin: 0 0 10px;
+}
+
+
+
+.sidebar-service-box {
+    border-bottom: 1px solid #999;
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+
+.provider-box .content a {
+    color: #777;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+    text-decoration: underline;
+    transition: all 0.3s ease 0s;
+}
+
+.provider-box .content a:hover {
+    color: var(--hover-color);
+}
+
+.sidebar-service-box:last-child {
+    margin: 0;
+    border-bottom: none;
+}
+
+.sidebar-service-box h5 {
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 0 15px 0 0;
+}
+
+.sidebar-service-box h5 a {
+    color: #555;
+    transition: all 0.3s ease 0s;
+}
+
+.sidebar-service-box h5 a:hover {
+    color: var(--hover-color);
+}
+
+
+/* user sidebar css */
+
+.user-sidebar {
+    background: linear-gradient(#eee, #fff);
+    /* border: 1px solid #000; */
+}
+
+.user-sidebar .user-info {
+    color: #fff;
+    background-color: var(--hover-color);
+    text-transform: capitalize;
+    padding: 10px;
+    margin: 0 0 20px;
+}
+
+.user-sidebar .user-info img {
+    margin: 0 12px 0 0;
+    object-fit: cover;
+}
+
+.user-sidebar .user-info h5 {
+    margin: 0 0 5px;
+}
+
+.user-sidebar .user-info span {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.user-sidebar ul {
+    padding: 0 10px;
+    margin: 0;
+    list-style: none;
+}
+
+.user-sidebar ul li {
+    margin: 0 0 20px;
+}
+
+.user-sidebar ul li a {
+    color: var(--black);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.user-sidebar ul li a i {
+    margin-right: 15px;
+}
+
+.user-image-box {
+    /* border: 1px solid #000; */
+    width: 120px;
+}
+
+.user-image-box .btn {
+    padding: 4px 5px 5px;
+}
+
+.dash-widget {
+    color: #fff;
+    background-color: rgb(7, 104, 143);
+    font-size: 20px;
+    font-weight: 600;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.dash-widget .dash-widget-icon {
+    font-size: 22px;
+    text-align: center;
+    line-height: 60px;
+    height: 60px;
+    width: 60px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+/*===============================*/
+/******* Slug Page CSS *******/
+/*===============================*/
+
+/* .all_category{
+    padding:10px 10px;
+    line-height: 30px;
+}
+.all_category li{ position: relative; padding: 0 0 0 15px;}
+.all_category li:before{
+    content: "";
+    background: var(--hover-color);
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 12px;
+    left: 0;
+}
+.all_category a{
+    color:#767474;
+    font-size: 16px;
+    font-weight: 600;
+}
+.all_category a:hover{ color: var(--hover-color);} */
+/*===============================*/
+/******* Single Page CSS *******/
+/*===============================*/
+
+/* .related-service{
+    display:inline-block;
+    width: 100%;
+}
+.related-service .card-img-top{
+    width: 70px;
+    height: 70px;
+    border-radius: 0;
+    float: left;
+    margin: 0 10px 0 0;
+}
+.related-service .service-name{ color: var(--black); }
+.related-service .service-name:hover{ color: var(--hover-color); } */
+
+/*===============================*/
+/******* Form CSS *******/
+/*===============================*/
+
+form {
+    background-color: #eee;
+    padding: 40px;
+}
+
+form h3 {
+    color: var(--black);
+    font-size: 25px;
+    font-weight: 600;
+    margin: 0 0 20px;
+}
+
+form .form-control {
+    border-radius: 0;
+}
+
+form .btn {
+    border: none;
+    border-radius: 0;
+}
+
+form .btn:focus {
+    border: none;
+}
+
+form .btn:hover {
+    background-color: var(--hover-color);
+}
+
+form .form-footer {
+    color: var(--black);
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+}
+
+form .form-footer a {
+    color: var(--hover-color);
+}
+
+/*===============================*/
+/*******Footer CSS *******/
+/*===============================*/
+
+#footer {
+    color: var(--white);
+    background: #111;
+    padding: 80px 0 0;
+}
+
+#footer .logo a {
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+#footer h6 {
+    font-size: 18px;
+    font-weight: 600;
+    padding: 0 0 15px;
+    position: relative;
+}
+
+#footer h6:before {
+    content: "";
+    width: 50px;
+    height: 4px;
+    background: var(--hover-color);
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    transition: all .3s ease;
+}
+
+#footer ul li {
+    margin: 0 0 15px;
+}
+
+#footer ul li a {
+    color: var(--white);
+}
+
+#footer ul li a:hover {
+    color: var(--hover-color);
+}
+
+#footer ul li i.fa,
+#footer i.fas,
+#footer i.far {
+    margin: 0 10px 0 0;
+}
+
+#footer .icon li {
+    display: inline-block;
+    margin: 0 3px 0 0;
+}
+
+#footer .icon li a {
+    color: var(--white);
+    background: #333;
+    display: block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+#footer .icon li a:hover {
+    color: var(--white);
+    background: var(--hover-color);
+}
+
+#footer .contacts li i.fa,
+#footer .contacts li i.fas,
+#footer .contacts li i.far {
+    color: var(--hover-color);
+}
+
+#footer .form-control {
+    color: #0a0a0a;
+    background: var(--white);
+    border-radius: 0;
+    height: 60px;
+}
+
+#footer .form-control::placeholder {
+    color: #0a0a0a;
+}
+
+#footer .btn {
+    color: var(--white);
+    background: var(--hover-color);
+    padding: 17px 30px;
+    display: block;
+    font-weight: 600;
+    border-radius: 0;
+    transition: all .5s ease;
+}
+
+#footer .btn:focus-visible {
+    outline: 0px !important;
+}
+
+#footer .form-control:focus,
+#footer .btn:focus {
+    border: none;
+    box-shadow: none;
+}
+
+#footer .footer-section {
+    color: var(--white);
+    background: var(--black);
+    padding: 20px 0;
+}
+
+#footer .footer-section ul li {
+    position: relative;
+    margin: 0 20px 0 0;
+}
+
+#footer .footer-section ul li:last-child {
+    margin: 0;
+}
+
+#footer .footer-section ul li:before {
+    content: "";
+    background: var(--hover-color);
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    right: -15px;
+}
+
+#footer .footer-section ul li:last-child:before {
+    background: none;
+}
+
+#footer .footer-section ul li a {
+    color: var(--white);
+}
+
+#footer .footer-section ul li a:hover {
+    color: var(--hover-color);
+}

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: service-booking-app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=service_booking
+      - DB_USERNAME=service_user
+      - DB_PASSWORD=service_password
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - service-network
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: service-booking-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: service_booking
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_PASSWORD: service_password
+      MYSQL_USER: service_user
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - service-network
+
+networks:
+  service-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
