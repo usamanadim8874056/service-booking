@@ -15,6 +15,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         if(file_exists(storage_path('installed'))){
+            $siteInfo = null;
+            $social = collect();
+            $pages = collect();
+            $latest_categories = collect();
+
             if (Schema::hasTable('general_settings')) {
                 $siteInfo = DB::table('general_settings')->first();
             }
@@ -28,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
                 $pages = DB::table('pages')->select(['page_title','page_slug'])->where('status','1')->get();
             }
 
-            if (Schema::hasTable('categories')) {
+            if (Schema::hasTable('categories') && Schema::hasTable('services')) {
                 $latest_categories = DB::table('categories')->select(['categories.*',DB::raw('count(services.category) as count')])
                 ->leftJoin('services','services.category','=','categories.cat_id')
                 ->where('services.status','1')
