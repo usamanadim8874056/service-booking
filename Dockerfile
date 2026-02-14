@@ -31,6 +31,9 @@ RUN chown -R www-data:www-data . && chmod -R 755 storage bootstrap/cache
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 EXPOSE 80 9000
 
-CMD ["sh", "-c", "php-fpm -D && nginx -g 'daemon off;'"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
