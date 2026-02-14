@@ -29,7 +29,10 @@ RUN composer install --no-ansi --no-interaction --no-dev --optimize-autoloader -
 
 RUN chown -R www-data:www-data . && chmod -R 755 storage bootstrap/cache
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Disable default Nginx config and use our custom one
+RUN rm -f /etc/nginx/sites-enabled/default
+COPY nginx.conf /etc/nginx/sites-available/default
+RUN ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
