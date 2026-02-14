@@ -1,6 +1,6 @@
-FROM php:8.2-apache
+FROM php:8.2-fpm
 
-# Install required PHP extensions
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libzip-dev \
     zlib1g-dev \
+    nginx \
+    supervisor \
     && docker-php-ext-configure gd --with-jpeg --with-freetype \
     && docker-php-ext-install -j$(nproc) \
     gd \
@@ -16,47 +18,57 @@ RUN apt-get update && apt-get install -y \
     pdo_mysql \
     mbstring \
     tokenizer \
-    json \
-    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Enable Apache modules
-RUN a2enmod rewrite
-
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project
+# Copy project files
 COPY . .
 
 # Install PHP dependencies
-RUN composer install --optimize-autoloader --no-dev
+RUN composer install --no-ansi --no-interaction --optimize-autoloader --no-scripts
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage \
-    && chmod -R 755 /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 storage bootstrap/cache
 
-# Configure Apache
-RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
+# Configure Nginx
+RUN mkdir -p /etc/nginx/sites-available && \
+    echo 'server { \
+        listen 80; \
+        server_name _; \
+        root /var/www/html/public; \
+        index index.php; \
+        location / { \
+            try_files $uri $uri/ /index.php?$query_string; \
+        } \
+        location ~ \.php$ { \
+            fastcgi_pass 127.0.0.1:9000; \
+            fastcgi_index index.php; \
+            include fastcgi_params; \
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; \
+        } \
+    }' > /etc/nginx/sites-available/default
 
-# Create .htaccess in public folder
-RUN cat > /var/www/html/public/.htaccess << 'EOF'
-<IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews
-    </IfModule>
-
-    RewriteEngine On
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
-</IfModule>
-EOF
+# Configure supervisord
+RUN mkdir -p /etc/supervisor/conf.d && \
+    echo '[supervisord] \
+nodaemon=true \
+\
+[program:php-fpm] \
+command=/usr/local/sbin/php-fpm \
+autostart=true \
+autorestart=true \
+\
+[program:nginx] \
+command=/usr/sbin/nginx -g "daemon off;" \
+autostart=true \
+autorestart=true' > /etc/supervisor/conf.d/supervisord.conf
 
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
