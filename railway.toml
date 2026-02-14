@@ -1,21 +1,7 @@
 [build]
 builder = "dockerfile"
 
-[deploy]
-numReplicas = 1
-restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 3
-
-[[services]]
-name = "web"
-builder = "dockerfile"
-healthcheckPath = "/"
-healthcheckTimeout = 5
-
 [[services]]
 name = "mysql"
 source = "mysql"
-
-[[plugins]]
-source = "mysql"
-name = "mysql"
+autoExpand = true
