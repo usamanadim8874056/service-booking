@@ -26,5 +26,10 @@ php artisan view:cache
 
 echo "✅ Application ready!"
 
+# Railway provides a dynamic PORT; make Nginx listen on it.
+if [ -n "$PORT" ]; then
+    sed -i "s/listen 80 default_server;/listen ${PORT} default_server;/" /etc/nginx/sites-available/default
+fi
+
 # Start PHP-FPM and Nginx
 php-fpm -D && nginx -g 'daemon off;'
