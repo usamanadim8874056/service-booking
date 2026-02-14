@@ -6,14 +6,17 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pkg-config \
     libonig-dev \
     libpng-dev \
-    libjpeg-dev \
+    libjpeg62-turbo-dev \
     libfreetype6-dev \
+    libwebp-dev \
+    libxpm-dev \
     libzip-dev \
     zlib1g-dev \
     nginx \
     && rm -rf /var/lib/apt/lists/*
 
-RUN docker-php-ext-configure gd --with-jpeg --with-freetype && \
+# Configure and build GD with explicit paths to dependencies
+RUN docker-php-ext-configure gd --with-jpeg=/usr/include --with-freetype=/usr/include/freetype2 && \
     docker-php-ext-install -j$(nproc) gd zip pdo_mysql mbstring tokenizer
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
